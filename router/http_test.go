@@ -187,8 +187,10 @@ func addHTTPRoute(c *C, l *HTTPListener) *router.Route {
 	return addRoute(c, l, router.HTTPRoute{
 		Domain:  "example.com",
 		Service: "test",
-		TLSCert: string(localhostCert),
-		TLSKey:  string(localhostKey),
+		Certificate: &router.RouteCert{
+			TLSCert: string(localhostCert),
+			TLSKey:  string(localhostKey),
+		},
 	}.ToRoute())
 }
 
